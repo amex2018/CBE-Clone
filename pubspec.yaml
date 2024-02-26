@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   neumorphic_button: ^0.0.1+2
   curved_navigation_bar: ^1.0.3
+  animated_floating_buttons: ^0.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
