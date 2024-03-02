@@ -12,7 +12,7 @@ class NavBar extends StatelessWidget {
                   gradient: LinearGradient(
                       colors: <Color>[AppColors.primary, AppColors.primary]),
                   image: const DecorationImage(
-                      image: AssetImage('assets/worldmap.png'))),
+                      image: AssetImage('assets/icons/worldmap-06.png'))),
               child: Container(
                 child: Column(
                   children: <Widget>[

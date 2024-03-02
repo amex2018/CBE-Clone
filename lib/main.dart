@@ -1,3 +1,4 @@
+import 'package:CBE_CLONE/constants/App_Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:CBE_CLONE/splash_screen.dart';
@@ -5,7 +6,6 @@ import 'package:CBE_CLONE/splash_screen.dart';
 // Define a custom Sizer widget
 class Sizer extends StatefulWidget {
   final Widget Function(BuildContext, Orientation, DeviceType) builder;
-
   const Sizer({Key? key, required this.builder}) : super(key: key);
 
   @override
@@ -17,11 +17,9 @@ class _SizerState extends State<Sizer> {
   Widget build(BuildContext context) {
     // Determine orientation
     Orientation orientation = MediaQuery.of(context).orientation;
-
     // You would typically implement logic here to determine the device type
     // For simplicity, I'm using a placeholder enum
     DeviceType deviceType = DeviceType.mobile;
-
     // Call the builder function with orientation and device type
     return widget.builder(context, orientation, deviceType);
   }
@@ -53,7 +51,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Clone CBE',
           theme: ThemeData(
-              primarySwatch: Colors.amber,
+            backgroundColor: AppColors.whitelight,
               visualDensity: VisualDensity.adaptivePlatformDensity),
           // home: Scaffold(
           //   appBar: AppBar(

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CBE Clone',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        backgroundColor: AppColors.whitelight,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomeScreen(),
@@ -101,6 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
           key: key,
           colorStartAnimation: AppColors.primary,
           colorEndAnimation: AppColors.primary,
+          curve: Curves.decelerate,
           animatedIconData: AnimatedIcons.view_list),
       body: Container(
         width: double.infinity,

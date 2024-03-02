@@ -8,7 +8,8 @@ import 'clipper2.dart';
 
 class GreetingWidget extends StatelessWidget {
   final DateTime currentTime = DateTime.now();
-
+ final _setPIN = GlobalKey<FormState>();
+ 
   String getGreeting() {
     final hour = currentTime.hour;
     if (hour < 12) {
@@ -23,117 +24,122 @@ class GreetingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final _setPIN = GlobalKey<FormState>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Image.asset(
-          'assets/Dj6xJ2dX0AADlPv-removebg-preview.png',
-          height: 120,
-          alignment: Alignment.center,
-          fit: BoxFit.cover,
-        ),
-        SizedBox(height: 10),
-        Text(
-          'Welcome !',
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 20,
-            color: AppColors.primary,
+   
+    bool isLoading = false;
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/Dj6xJ2dX0AADlPv-removebg-preview.png',
+            height: 120,
+            alignment: Alignment.center,
+            fit: BoxFit.cover,
           ),
-        ),
-        Text(
-          'Commercial Bank of Ethiopia !',
-          style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 18,
-            color: AppColors.primary,
+          SizedBox(height: 10),
+          Text(
+            'Welcome !',
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+              color: AppColors.primary,
+            ),
           ),
-        ),
-        Text(
-          getGreeting(),
-          style: TextStyle(
-            fontWeight: FontWeight.w300,
-            fontSize: 14,
-            color: AppColors.primary,
+          Text(
+            'Commercial Bank of Ethiopia !',
+            style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 18,
+              color: AppColors.primary,
+            ),
           ),
-        ),
-        SizedBox(height: 20),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Center(
-                child: Form(
-                  key: _setPIN,
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    cursorColor: AppColors.primary,
-                    cursorOpacityAnimates: FutureBuilder.debugRethrowError,
-                    obscureText: true,
-                    textAlign: TextAlign.center, // Center align the input text
-                    decoration: InputDecoration(
-                      hintText: 'PIN',
-                      hintStyle: TextStyle(
+          Text(
+            getGreeting(),
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 14,
+              color: AppColors.primary,
+            ),
+          ),
+          SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                Center(
+                  child: Form(
+                    key: _setPIN,
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      cursorColor: AppColors.primary,
+                      cursorOpacityAnimates: true, // Corrected value
+                      obscureText: true,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: 'PIN',
+                        hintStyle: TextStyle(
                           color: AppColors.graylight,
                           fontSize: 20,
-                          fontWeight: FontWeight.w400),
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty ||
-                          !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
-                              .hasMatch(value)) {
-                        return "Enter Correct PIN Code.";
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
-                    child: NeumorphicButton(
-                      onTap: () {
-                        if (_setPIN.currentState!.validate()) {
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty || value.length != 4) {
+                          return "Enter Correct PIN Code."; // Adjust validation message
                         } else {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(builder: (_) => HomeScreen()),
-                              (route) => false);
+                          return null;
                         }
                       },
-                      borderRadius: 100,
-                      bottomRightShadowBlurRadius: 15,
-                      bottomRightShadowSpreadRadius: 1,
-                      borderWidth: 5,
-                      backgroundColor: AppColors.secondary,
-                      topLeftShadowBlurRadius: 15,
-                      topLeftShadowSpreadRadius: 1,
-                      topLeftShadowColor: Colors.white,
-                      bottomRightShadowColor: Colors.grey.shade500,
-                      height: size.width * 0.15,
-                      width: size.width * 0.15,
-                      // padding: const EdgeInsets.all(50),
-                      bottomRightOffset: const Offset(4, 4),
-                      topLeftOffset: const Offset(-4, -4),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.black,
-                        size: 16,
-                      ),
-                      // alignment: Alignment.center
                     ),
-                  )
-                ],
-              )
-            ],
-          ),
-        )
-      ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: NeumorphicButton(
+                        // key: _setPIN,
+                        onTap: () {
+                          if (_setPIN.currentState!.validate()) {
+                            // Navigate to HomeScreen if PIN is valid
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomeScreen()),
+                              (route) => false,
+                            );
+                          } else {
+                            AlertDialog();
+                            // PIN is invalid, do something else or show an error message
+                          }
+                        },
+                        borderRadius: 100,
+                        bottomRightShadowBlurRadius: 15,
+                        bottomRightShadowSpreadRadius: 1,
+                        borderWidth: 5,
+                        backgroundColor: AppColors.secondary,
+                        topLeftShadowBlurRadius: 15,
+                        topLeftShadowSpreadRadius: 1,
+                        topLeftShadowColor: Colors.white,
+                        bottomRightShadowColor: Colors.grey.shade500,
+                        height: size.width * 0.15,
+                        width: size.width * 0.15,
+                        bottomRightOffset: const Offset(4, 4),
+                        topLeftOffset: const Offset(-4, -4),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.black,
+                          size: 16,
+                        ),
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }

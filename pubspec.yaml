@@ -33,7 +33,8 @@ dependencies:
   neumorphic_button: ^0.0.1+2
   curved_navigation_bar: ^1.0.3
   animated_floating_buttons: ^0.0.1
-
+  qr_flutter: ^4.1.0
+  flutter_bloc: ^8.1.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -54,7 +55,7 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 flutter_icons:
   android: "launcher_icon"
-  background_color: "#ffffff"
+  background_color: "0xffffffff"
   ios: true
   min_sdk_android: 21
   image_path: "assets/Dj6xJ2dX0AADlPv-removebg-preview.png"
@@ -70,6 +71,17 @@ flutter:
   assets:
      - assets/Dj6xJ2dX0AADlPv-removebg-preview.png
      - assets/worldmap.png
+     - assets/icons/i_Banking.png
+     - assets/icons/i_Entertainment.png
+     - assets/icons/i_help.png
+     - assets/icons/i_Payfor.png
+     - assets/icons/i_QR.png
+     - assets/icons/i_transfer.png
+     - assets/icons/i_Travel.png
+     - assets/icons/i_utilities.png
+     - assets/icons/i_utility.png
+     - assets/icons/worldmap-06.png
+     - assets/icons/i_Topup.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
