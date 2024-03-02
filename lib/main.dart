@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           title: 'Clone CBE',
           theme: ThemeData(
             backgroundColor: AppColors.whitelight,
-              visualDensity: VisualDensity.adaptivePlatformDensity),
+            visualDensity: VisualDensity.adaptivePlatformDensity),
           // home: Scaffold(
           //   appBar: AppBar(
           //     title: Text('Your App'),

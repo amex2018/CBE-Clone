@@ -96,7 +96,7 @@ class QRpages extends StatelessWidget {
                       ),
                     ),
                     Column(
-                      children: stjs[
+                      children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 28.0, left: 15, right: 15),
                           child: Center(

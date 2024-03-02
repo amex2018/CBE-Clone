@@ -68,7 +68,7 @@ class GreetingWidget extends StatelessWidget {
               children: [
                 Center(
                   child: Form(
-                    key: _setPIN,
+                    
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       cursorColor: AppColors.primary,
@@ -85,9 +85,18 @@ class GreetingWidget extends StatelessWidget {
                       ),
                       validator: (value) {
                         if (value!.isEmpty || value.length != 4) {
-                          return "Enter Correct PIN Code."; // Adjust validation message
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomeScreen()),
+                              (route) => false);
+                       
                         } else {
-                          return null;
+                     
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => HomeScreen()),
+                              (route) => false);
+                        
                         }
                       },
                     ),

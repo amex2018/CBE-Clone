@@ -1,9 +1,11 @@
+import 'package:CBE_CLONE/Home.dart';
+import 'package:CBE_CLONE/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:CBE_CLONE/constants/App_Colors.dart';
 
 class NavBar extends StatelessWidget {
   @override
-  Widget build(Object context) {
+  Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: <Widget>[
@@ -67,7 +69,15 @@ class NavBar extends StatelessWidget {
             leading: Icon(Icons.logout_outlined),
             iconColor: AppColors.primary,
             title: Text('Logout'),
-            onTap: () => print('object'),
+            onTap: () => {
+                  
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(builder: (_) => LoginScreen()),
+                              (route) => false)
+                        
+            }
+            
           ),
           ListTile(
             leading: Icon(Icons.assignment_late),
